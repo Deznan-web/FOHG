@@ -36,7 +36,7 @@ export default function Footer() {
             className="inline-block"
           >
             <img
-              src="/images/WhatsApp_Image_2026-08-05_at_12.32.10.jpeg"
+              src={import.meta.env.BASE_URL + 'images/WhatsApp_Image_2026-08-05_at_12.32.10.jpeg'}
               alt="FOHG"
               className="h-20 w-auto object-contain md:h-28"
             />

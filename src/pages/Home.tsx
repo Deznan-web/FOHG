@@ -171,7 +171,13 @@ function FeaturedProducts() {
           >
             <div className="relative aspect-[3/4] overflow-hidden bg-ink-900/5">
               <img
-                src={p.image_url}
+                src={
+                  p.image_url
+                    ? p.image_url.startsWith('/')
+                      ? import.meta.env.BASE_URL + p.image_url.slice(1)
+                      : p.image_url
+                    : ''
+                }
                 alt={p.name}
                 loading="lazy"
                 className="h-full w-full object-cover grayscale transition-all duration-[1.2s] ease-editorial group-hover:grayscale-0 group-hover:scale-[1.04]"

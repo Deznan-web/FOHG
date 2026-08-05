@@ -31,6 +31,13 @@ jobs:
 
       - run: npm ci
 
+      - name: Validate Supabase secrets
+        run: |
+          if [ -z "$VITE_SUPABASE_URL" ] || [ -z "$VITE_SUPABASE_ANON_KEY" ]; then
+            echo "ERROR: VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY must be set in repository secrets."
+            exit 1
+          fi
+
       - run: npm run build
 
       - uses: actions/configure-pages@v5
