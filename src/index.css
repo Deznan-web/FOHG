@@ -120,13 +120,3 @@ body {
   }
   .animate-marquee, .animate-floaty, .animate-spin-slow { animation: none; }
 }
-
-/* Temporary fix: ensure content isn't permanently hidden if JS reveal
-   logic or IntersectionObserver fails. Removes reveal clipping/opacity so
-   images and other elements are visible immediately. Remove once the
-   underlying issue is diagnosed. */
-.reveal, .word, .clip-reveal {
-  opacity: 1 !important;
-  transform: none !important;
-  clip-path: none !important;
-}
