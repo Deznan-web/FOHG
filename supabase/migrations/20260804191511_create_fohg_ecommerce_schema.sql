@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS products (
   name text NOT NULL,
   description text NOT NULL DEFAULT '',
   price_cents int NOT NULL DEFAULT 0,
-  currency text NOT NULL DEFAULT 'usd',
+  currency text NOT NULL DEFAULT 'ngn',
   image_url text NOT NULL,
   category text NOT NULL DEFAULT 'Apparel',
   status text NOT NULL DEFAULT 'available',
@@ -87,7 +87,7 @@ CREATE TABLE IF NOT EXISTS orders (
   city text NOT NULL,
   country text NOT NULL,
   total_cents int NOT NULL DEFAULT 0,
-  currency text NOT NULL DEFAULT 'usd',
+  currency text NOT NULL DEFAULT 'ngn',
   status text NOT NULL DEFAULT 'pending',
   stripe_session_id text,
   notes text,
@@ -156,21 +156,21 @@ CREATE INDEX IF NOT EXISTS order_items_order_idx ON order_items(order_id);
 
 -- Seed: available products
 INSERT INTO products (position, name, description, price_cents, currency, image_url, category, status, size_options) VALUES
-  (1, 'Heavyweight Tee — Bone', '320gsm organic cotton. Boxy fit. Garment-dyed in small batches.', 6500, 'usd', 'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL']),
-  (2, 'Heavyweight Tee — Clay', '320gsm organic cotton. Boxy fit. Earth-pigment dyed.', 6500, 'usd', 'https://images.pexels.com/photos/8217425/pexels-photo-8217425.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL']),
-  (3, 'Field Pant — Stone', 'Wide-leg cotton twill. Drawcord waist. Two cargo pockets.', 12000, 'usd', 'https://images.pexels.com/photos/1192315/pexels-photo-1192315.jpeg?auto=compress&cs=tinysrgb&w=900', 'Bottoms', 'available', ARRAY['28','30','32','34','36']),
-  (4, 'Field Pant — Ink', 'Wide-leg cotton twill. Drawcord waist. Overdyed black.', 12000, 'usd', 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=900', 'Bottoms', 'available', ARRAY['28','30','32','34','36']),
-  (5, 'Wax Canvas Tote', 'Hand-waxed 18oz canvas. Leather strap handles. Made to age.', 8500, 'usd', 'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?auto=compress&cs=tinysrgb&w=900', 'Accessories', 'available', ARRAY['One Size']),
-  (6, 'Ribbed Knit Beanie', 'Merino wool rib knit. Folded cuff. Made in Portugal.', 4500, 'usd', 'https://images.pexels.com/photos/1018911/pexels-photo-1018911.jpeg?auto=compress&cs=tinysrgb&w=900', 'Accessories', 'available', ARRAY['One Size']),
-  (7, 'Oversized Hoodie — Ash', '500gsm brushed-back fleece. Dropped shoulder. Raw hem.', 13500, 'usd', 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL']),
-  (8, 'Oversized Hoodie — Moss', '500gsm brushed-back fleece. Dropped shoulder. Plant-dyed.', 13500, 'usd', 'https://images.pexels.com/photos/769749/pexels-photo-769749.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL'])
+  (1, 'Heavyweight Tee — Bone', '320gsm organic cotton. Boxy fit. Garment-dyed in small batches.', 1500000, 'ngn', 'https://images.pexels.com/photos/996329/pexels-photo-996329.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL']),
+  (2, 'Heavyweight Tee — Clay', '320gsm organic cotton. Boxy fit. Earth-pigment dyed.', 1500000, 'ngn', 'https://images.pexels.com/photos/8217425/pexels-photo-8217425.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL']),
+  (3, 'Field Pant — Stone', 'Wide-leg cotton twill. Drawcord waist. Two cargo pockets.', 1800000, 'ngn', 'https://images.pexels.com/photos/1192315/pexels-photo-1192315.jpeg?auto=compress&cs=tinysrgb&w=900', 'Bottoms', 'available', ARRAY['28','30','32','34','36']),
+  (4, 'Field Pant — Ink', 'Wide-leg cotton twill. Drawcord waist. Overdyed black.', 1800000, 'ngn', 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=900', 'Bottoms', 'available', ARRAY['28','30','32','34','36']),
+  (5, 'Wax Canvas Tote', 'Hand-waxed 18oz canvas. Leather strap handles. Made to age.', 1750000, 'ngn', 'https://images.pexels.com/photos/2905238/pexels-photo-2905238.jpeg?auto=compress&cs=tinysrgb&w=900', 'Accessories', 'available', ARRAY['One Size']),
+  (6, 'Ribbed Knit Beanie', 'Merino wool rib knit. Folded cuff. Made in Portugal.', 1500000, 'ngn', 'https://images.pexels.com/photos/1018911/pexels-photo-1018911.jpeg?auto=compress&cs=tinysrgb&w=900', 'Accessories', 'available', ARRAY['One Size']),
+  (7, 'Oversized Hoodie — Ash', '500gsm brushed-back fleece. Dropped shoulder. Raw hem.', 2200000, 'ngn', 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL']),
+  (8, 'Oversized Hoodie — Moss', '500gsm brushed-back fleece. Dropped shoulder. Plant-dyed.', 2200000, 'ngn', 'https://images.pexels.com/photos/769749/pexels-photo-769749.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'available', ARRAY['S','M','L','XL'])
 ON CONFLICT DO NOTHING;
 
 -- Seed: upcoming products
 INSERT INTO products (position, name, description, price_cents, currency, image_url, category, status, size_options, drop_date) VALUES
-  (1, 'Suede Field Jacket', 'French lambskin suede. Four-pocket safari silhouette. Lined.', 38000, 'usd', 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=900', 'Outerwear', 'upcoming', ARRAY['S','M','L','XL'], '2026-09-15'),
-  (2, 'Cashmere Crew — Bone', 'Mongolian cashmere 3-ply. Ribbed cuffs. Slim fit.', 22000, 'usd', 'https://images.pexels.com/photos/8217425/pexels-photo-8217425.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'upcoming', ARRAY['S','M','L','XL'], '2026-10-01'),
-  (3, 'Selvedge Denim — Indigo', '14oz Japanese selvedge. Straight leg. Raw. Will fade beautifully.', 18000, 'usd', 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=900', 'Bottoms', 'upcoming', ARRAY['28','30','32','34','36'], '2026-10-20')
+  (1, 'Suede Field Jacket', 'French lambskin suede. Four-pocket safari silhouette. Lined.', 3000000, 'ngn', 'https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=900', 'Outerwear', 'upcoming', ARRAY['S','M','L','XL'], '2026-09-15'),
+  (2, 'Cashmere Crew — Bone', 'Mongolian cashmere 3-ply. Ribbed cuffs. Slim fit.', 2200000, 'ngn', 'https://images.pexels.com/photos/8217425/pexels-photo-8217425.jpeg?auto=compress&cs=tinysrgb&w=900', 'Tops', 'upcoming', ARRAY['S','M','L','XL'], '2026-10-01'),
+  (3, 'Selvedge Denim — Indigo', '14oz Japanese selvedge. Straight leg. Raw. Will fade beautifully.', 1800000, 'ngn', 'https://images.pexels.com/photos/1598505/pexels-photo-1598505.jpeg?auto=compress&cs=tinysrgb&w=900', 'Bottoms', 'upcoming', ARRAY['28','30','32','34','36'], '2026-10-20')
 ON CONFLICT DO NOTHING;
 
 -- Seed: lab products (ideas in progress)

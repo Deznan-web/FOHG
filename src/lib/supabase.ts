@@ -70,8 +70,9 @@ export function normalizeImageUrl(url: string | null | undefined): string {
 
   return base + url;
 }
-export function formatPrice(cents: number, currency = 'usd'): string {
-  return new Intl.NumberFormat('en-US', {
+export function formatPrice(cents: number, currency = 'ngn'): string {
+  const locale = currency.toLowerCase() === 'ngn' ? 'en-NG' : 'en-US';
+  return new Intl.NumberFormat(locale, {
     style: 'currency',
     currency: currency.toUpperCase(),
     minimumFractionDigits: 0,

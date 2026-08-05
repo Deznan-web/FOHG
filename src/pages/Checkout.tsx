@@ -44,7 +44,7 @@ export default function Checkout() {
         city: form.city,
         country: form.country,
         total_cents: totalCents,
-        currency: 'usd',
+        currency: 'ngn',
         status: 'pending',
         notes: form.notes || null,
       })
