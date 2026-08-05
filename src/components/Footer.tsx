@@ -113,19 +113,24 @@ function UserLocation() {
             { headers: { Accept: 'application/json' } },
           );
           const data = await res.json();
-          const state =
-            data?.address?.state ||
-            data?.address?.region ||
-            data?.address?.city ||
+          const address = data?.address || {};
+          const locality =
+            address.city ||
+            address.town ||
+            address.village ||
+            address.hamlet ||
+            address.county ||
+            address.state ||
+            address.region ||
             'Unknown';
-          const country = data?.address?.country_code?.toUpperCase() || '';
-          setLocation(country ? `${state}, ${country}` : state);
+          const country = address.country_code?.toUpperCase() || '';
+          setLocation(country ? `${locality}, ${country}` : locality);
         } catch {
           setLocation('Location unavailable');
         }
       },
       () => setLocation('Location disabled'),
-      { timeout: 8000 },
+      { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 },
     );
   }, []);
 
