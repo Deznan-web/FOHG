@@ -120,3 +120,15 @@ body {
   }
   .animate-marquee, .animate-floaty, .animate-spin-slow { animation: none; }
 }
+
+/* TEMPORARY DEBUG OVERRIDE: force reveal elements visible when JS fails
+   Remove this after the root cause is fixed (e.g., rebuild without errors). */
+.reveal, .word, .clip-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  clip-path: none !important;
+  transition: none !important;
+}
+
+/* Make sure background images / inline elements are visible during debug */
+img, picture, video { opacity: 1 !important; }
