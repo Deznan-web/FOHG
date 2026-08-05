@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, formatPrice, type Product } from '@/lib/supabase';
+import { normalizeImageUrl, supabase, formatPrice, type Product } from '@/lib/supabase';
 import { useCart } from '@/lib/cart';
 import { useReveal } from '@/hooks/useReveal';
 
@@ -88,13 +88,19 @@ function ProductCard({ product, delay }: { product: Product; delay: number }) {
     setSelectedSize('');
   };
 
+  const imageSrc = normalizeImageUrl(product.image_url);
+
   return (
     <article className="reveal group" data-delay={delay}>
       <div className="relative aspect-[3/4] overflow-hidden bg-ink-900/5" data-cursor="View">
         <img
-          src={product.image_url}
+          src={imageSrc}
           alt={product.name}
           loading="lazy"
+          onError={(e) => {
+            const el = e.currentTarget as HTMLImageElement;
+            if (el.src !== normalizeImageUrl('')) el.src = normalizeImageUrl('');
+          }}
           className="h-full w-full object-cover grayscale transition-all duration-[1.2s] ease-editorial group-hover:grayscale-0 group-hover:scale-[1.04]"
         />
         <span className="absolute left-3 top-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper-50 mix-blend-difference">

@@ -7,7 +7,7 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import type { Product } from '@/lib/supabase';
+import { normalizeImageUrl, type Product } from '@/lib/supabase';
 
 export type CartItem = {
   productId: string;
@@ -73,7 +73,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
           productId: product.id,
           name: product.name,
           priceCents: product.price_cents,
-          imageUrl: product.image_url,
+          imageUrl: normalizeImageUrl(product.image_url),
           size,
           quantity: 1,
         },

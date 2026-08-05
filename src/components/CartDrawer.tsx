@@ -1,5 +1,5 @@
 import { useCart } from '@/lib/cart';
-import { formatPrice } from '@/lib/supabase';
+import { formatPrice, normalizeImageUrl } from '@/lib/supabase';
 import { useRouter } from '@/lib/router';
 import { X, Plus, Minus } from 'lucide-react';
 
@@ -64,8 +64,12 @@ export default function CartDrawer() {
                 >
                   <div className="h-24 w-20 shrink-0 overflow-hidden bg-ink-900/5">
                     <img
-                      src={item.imageUrl}
+                      src={normalizeImageUrl(item.imageUrl)}
                       alt={item.name}
+                      onError={(e) => {
+                        const el = e.currentTarget as HTMLImageElement;
+                        if (el.src !== normalizeImageUrl('')) el.src = normalizeImageUrl('');
+                      }}
                       className="h-full w-full object-cover"
                     />
                   </div>

@@ -51,7 +51,25 @@ export type OrderItem = {
   unit_price_cents: number;
   created_at: string;
 };
+export function normalizeImageUrl(url: string | null | undefined): string {
+  const placeholder = import.meta.env.BASE_URL + 'images/WhatsApp_Image_2026-08-05_at_12.32.10.jpeg';
+  if (!url) return placeholder;
 
+  const base = import.meta.env.BASE_URL || '/';
+  if (url.startsWith('http://') || url.startsWith('https://')) {
+    return url;
+  }
+
+  if (url.startsWith(base)) {
+    return url;
+  }
+
+  if (url.startsWith('/')) {
+    return base + url.slice(1);
+  }
+
+  return base + url;
+}
 export function formatPrice(cents: number, currency = 'usd'): string {
   return new Intl.NumberFormat('en-US', {
     style: 'currency',

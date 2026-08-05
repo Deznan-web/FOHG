@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, formatPrice, type Product } from '@/lib/supabase';
+import { normalizeImageUrl, supabase, formatPrice, type Product } from '@/lib/supabase';
 import { useReveal } from '@/hooks/useReveal';
 
 export default function Upcoming() {
@@ -77,9 +77,13 @@ function UpcomingItem({ product, index }: { product: Product; index: number }) {
       >
         <div className="clip-reveal relative aspect-[16/10] overflow-hidden bg-ink-900/5">
           <img
-            src={product.image_url}
+            src={normalizeImageUrl(product.image_url)}
             alt={product.name}
             loading="lazy"
+            onError={(e) => {
+              const el = e.currentTarget as HTMLImageElement;
+              if (el.src !== normalizeImageUrl('')) el.src = normalizeImageUrl('');
+            }}
             className="h-full w-full object-cover grayscale"
           />
           <div className="absolute inset-0 bg-ink-900/20" />

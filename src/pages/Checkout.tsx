@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useCart } from '@/lib/cart';
-import { supabase, formatPrice } from '@/lib/supabase';
+import { supabase, formatPrice, normalizeImageUrl } from '@/lib/supabase';
 import { useRouter } from '@/lib/router';
 import { useReveal } from '@/hooks/useReveal';
 import { Check, ArrowLeft } from 'lucide-react';
@@ -255,7 +255,15 @@ export default function Checkout() {
                 className="flex items-center gap-4 border-b hairline border-ink-900/10 py-4"
               >
                 <div className="h-16 w-14 shrink-0 overflow-hidden bg-ink-900/5">
-                  <img src={item.imageUrl} alt={item.name} className="h-full w-full object-cover" />
+                  <img
+                    src={normalizeImageUrl(item.imageUrl)}
+                    alt={item.name}
+                    onError={(e) => {
+                      const el = e.currentTarget as HTMLImageElement;
+                      if (el.src !== normalizeImageUrl('')) el.src = normalizeImageUrl('');
+                    }}
+                    className="h-full w-full object-cover"
+                  />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-serif text-sm font-light text-ink-900">{item.name}</h3>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { supabase, type Product } from '@/lib/supabase';
+import { normalizeImageUrl, supabase, type Product } from '@/lib/supabase';
 import { useReveal } from '@/hooks/useReveal';
 
 export default function Lab() {
@@ -65,9 +65,13 @@ function LabCard({ product, index }: { product: Product; index: number }) {
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-paper-50/5">
         <img
-          src={product.image_url}
+          src={normalizeImageUrl(product.image_url)}
           alt={product.name}
           loading="lazy"
+          onError={(e) => {
+            const el = e.currentTarget as HTMLImageElement;
+            if (el.src !== normalizeImageUrl('')) el.src = normalizeImageUrl('');
+          }}
           className="h-full w-full object-cover opacity-80 grayscale transition-all duration-[1.2s] ease-editorial group-hover:opacity-100 group-hover:grayscale-0 group-hover:scale-[1.03]"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/20 to-transparent" />
