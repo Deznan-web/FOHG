@@ -22,7 +22,7 @@ export default function Home() {
             </span>
             <span className="h-px w-10 bg-ink-900/30" />
             <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-ink-500">
-              Berlin
+              NIGERIA
             </span>
           </div>
           <p className="reveal reveal-delay-2 max-w-[18ch] font-mono text-[11px] uppercase leading-relaxed tracking-[0.18em] text-ink-500">
