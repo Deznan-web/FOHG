@@ -170,18 +170,26 @@ function FeaturedProducts() {
             onClick={() => navigate('/shop')}
           >
             <div className="relative aspect-[3/4] overflow-hidden bg-ink-900/5">
-              <img
-                src={
-                  p.image_url
-                    ? p.image_url.startsWith('/')
-                      ? import.meta.env.BASE_URL + p.image_url.slice(1)
-                      : p.image_url
-                    : ''
-                }
-                alt={p.name}
-                loading="lazy"
-                className="h-full w-full object-cover grayscale transition-all duration-[1.2s] ease-editorial group-hover:grayscale-0 group-hover:scale-[1.04]"
-              />
+              {(() => {
+                const placeholder = import.meta.env.BASE_URL + 'images/WhatsApp_Image_2026-08-05_at_12.32.10.jpeg';
+                const src = p.image_url
+                  ? (p.image_url.startsWith('http') || p.image_url.startsWith('https')
+                      ? p.image_url
+                      : import.meta.env.BASE_URL + (p.image_url.startsWith('/') ? p.image_url.slice(1) : p.image_url))
+                  : placeholder;
+                return (
+                  <img
+                    src={src}
+                    alt={p.name}
+                    loading="lazy"
+                    onError={(e) => {
+                      const el = e.currentTarget as HTMLImageElement;
+                      if (el.src !== placeholder) el.src = placeholder;
+                    }}
+                    className="h-full w-full object-cover grayscale transition-all duration-[1.2s] ease-editorial group-hover:grayscale-0 group-hover:scale-[1.04]"
+                  />
+                );
+              })()}
             </div>
             <div className="mt-3 flex items-start justify-between gap-2">
               <h3 className="font-serif text-base font-light leading-tight text-ink-900">
