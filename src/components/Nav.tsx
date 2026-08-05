@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useCart } from '@/lib/cart';
 import { useClock } from '@/hooks/useClock';
+import { normalizeImageUrl } from '@/lib/supabase';
 
 const links = [
   { label: 'Shop', href: '#/shop' },
@@ -36,7 +37,7 @@ export default function Nav() {
             className="flex items-center"
           >
             <img
-              src={import.meta.env.BASE_URL + 'images/WhatsApp_Image_2026-08-05_at_12.32.10.jpeg'}
+              src={normalizeImageUrl('images/WhatsApp_Image_2026-08-05_at_12.32.10.jpeg')}
               alt="FOHG"
               className="h-9 w-auto object-contain md:h-11"
             />
