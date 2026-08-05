@@ -4,20 +4,16 @@ on:
   push:
     branches: [ main, master ]
 
-# Grant write permission so GITHUB_TOKEN can push to gh-pages and manage Pages
 permissions:
-  contents: write
+  contents: read
   pages: write
+  id-token: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          # keep credentials to allow the gh-pages action/GITHUB_TOKEN to push
-          persist-credentials: true
-          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
@@ -25,20 +21,16 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
-      - name: Configure git for deployment
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: gh-pages
-      - name: Ensure GitHub Pages uses gh-pages
-        run: |
-          curl -X PUT "https://api.github.com/repos/${{ github.repository }}/pages" \
-            -H "Accept: application/vnd.github+json" \
-            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -H "X-GitHub-Api-Version: 2022-11-28" \
-            -d '{"source":{"branch":"gh-pages","path":"/"}}'
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v1
