@@ -49,7 +49,7 @@ export default function Home() {
         <div className="relative col-span-12 flex items-end justify-end md:col-span-3">
           <div className="clip-reveal relative mb-10 aspect-[3/4] w-full max-w-[260px] overflow-hidden">
             <img
-              src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg?auto=compress&cs=tinysrgb&w=700"
+              src="/images/IMG_4369.PNG"
               alt="Model wearing heavyweight hoodie."
               className="h-full w-full object-cover grayscale"
               loading="eager"
